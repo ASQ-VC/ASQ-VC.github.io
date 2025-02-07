@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Conversion Audio Samples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>ASR-Guided Discrete Representation Learning for High-Fidelity Voice Conversion</h1>
+
+    <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+	<p>
+        Disentangling speech content from speaker-specific characteristics (e.g., timbre, accent) is critical for high-quality voice conversion (VC).
+        Existing methods face a trade-off: narrow bottlenecks remove speaker information but degrade linguistic fidelity,
+        while wide bottlenecks preserve content at the cost of residual timbre leakage. To address this, we propose a novel
+        framework combining ASR-guided discrete content extraction and a VITS-based synthesis model. Our method introduces
+        finite scalar quantization (FSQ) with explicit ASR supervision, forcing the bottleneck to retain linguistic content
+        while discarding speaker traits. The quantized content representations are then integrated into a modified VITS architecture,
+        enhanced with a transformer-based timbre encoder and speaker verification embeddings. Experiments on LibriTTS and
+        VCTK datasets show state-of-the-art performance, achieving 11.2% WER (measured via HuBERT-large ASR) and 0.446 SECS
+        (via WavLM TDNN), surpassing prior SOTA method by absolute value 2.6% and 1.3% respectively.
+        Ablation studies further validate the effectiveness of ASR guidance and hierarchical codebook design.
+        This work provides a robust solution for content-preserving and speaker-consistent voice conversion.
+    </p>
+    </div>
+
+    <h2>Experiment Results</h2>
+        <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+	<p>
+        We compare our generated conversions with some previous famous baselines, the results are presented below. ("Full" means both ASR Loss and TE are applied)
+    </p>
+    </div>
+    <table>
+        <tr>
+        <th style="text-align: center">Source Audio</th>
+        <th style="text-align: center">Timbre Prompt</th>
+        <th style="text-align: center">YourTTS</th>
+        <th style="text-align: center">Diff-HierVC</th>
+        <th style="text-align: center">DDDM-VC</th>
+        <th style="text-align: center">Vec2Wav2</th>
+        <th style="text-align: center">FAcodec</th>
+        <th style="text-align: center">CosyVoice</th>
+        <th style="text-align: center">ASQ-VC (ours) (40-vocab)</th>
+        <th style="text-align: center">ASQ-VC (ours) (200-vocab)</th>
+        </tr>
+        <tr>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/source_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/ref_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/yourtts_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/diffhier_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/dddm_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/vec2wav2_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/facodec_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/cosyvoice_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/asq40_0.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/asq200_0.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/source_1.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/ref_1.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/yourtts_1.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/diffhier_1.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/dddm_1.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/vec2wav2_1.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/facodec_1.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/cosyvoice_1.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/asq40_1.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/asq200_1.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/source_2.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/ref_2.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/yourtts_2.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/diffhier_2.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/dddm_2.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/vec2wav2_2.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/facodec_2.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/cosyvoice_2.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/asq40_2.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/asq200_2.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/source_3.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/ref_3.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/yourtts_3.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/diffhier_3.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/dddm_3.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/vec2wav2_3.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/facodec_3.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/cosyvoice_3.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/asq40_3.wav" type="audio/wav"></audio></td>
+            <td><audio controls="controls" style="width: 140px;"><source src="audio/asq200_3.wav" type="audio/wav"></audio></td>
+        </tr>
+    </table>
+
+    <h2>Ablation Study</h2>
+            <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+	<p>
+        We studied the effect of different codebook sizes and the impact of applying timbre encoder (TE) and ASR loss. The comparisons are presented below.
+    </p>
+    </div>
+    <table>
+        <tr>
+            <th>Source Speech</th>
+            <th>Reference Speech</th>
+            <th>Vocab Size</th>
+            <th>Configuration</th>
+            <th>Converted Speech</th>
+        </tr>
+        <tr>
+            <td rowspan="16" style="text-align: center"><audio controls><source src="ablation/source.wav"/></audio></td>
+            <td rowspan="16" style="text-align: center"><audio controls><source src="ablation/ref.wav"/></audio></td>
+            <td rowspan="4" style="text-align: center">8</td>
+            <td>w/o ASR Loss, w/o TE</td>
+            <td><audio controls><source src="ablation/8_oo.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+            <td>with ASR Loss, w/o TE</td>
+            <td><audio controls><source src="ablation/8_wo.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+            <td>w/o ASR Loss, with TE</td>
+            <td><audio controls><source src="ablation/8_ow.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+            <td>Full</td>
+            <td><audio controls><source src="ablation/8_ww.wav" type="audio/wav"></audio></td>
+        </tr>
+                <tr>
+            <td rowspan="4" style="text-align: center">40</td>
+            <td>w/o ASR Loss, w/o TE</td>
+            <td><audio controls><source src="ablation/40_oo.wav" type="audio/wav"></audio></td>
+        </tr>
+                <tr>
+            <td>with ASR Loss, w/o TE</td>
+            <td><audio controls><source src="ablation/40_wo.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+            <td>w/o ASR Loss, with TE</td>
+            <td><audio controls><source src="ablation/40_ow.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+            <td>Full</td>
+            <td><audio controls><source src="ablation/40_ww.wav" type="audio/wav"></audio></td>
+        </tr>
+                <tr>
+            <td rowspan="4" style="text-align: center">200</td>
+            <td>w/o ASR Loss, w/o TE</td>
+            <td><audio controls><source src="ablation/200_oo.wav" type="audio/wav"></audio></td>
+        </tr>
+                <tr>
+            <td>with ASR Loss, w/o TE</td>
+            <td><audio controls><source src="ablation/200_wo.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+            <td>w/o ASR Loss, with TE</td>
+            <td><audio controls><source src="ablation/200_ow.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+            <td>Full</td>
+            <td><audio controls><source src="ablation/200_ww.wav" type="audio/wav"></audio></td>
+        </tr>
+                <tr>
+            <td rowspan="4" style="text-align: center">1000</td>
+            <td>w/o ASR Loss, w/o TE</td>
+            <td><audio controls><source src="ablation/1000_oo.wav" type="audio/wav"></audio></td>
+        </tr>
+                <tr>
+            <td>with ASR Loss, w/o TE</td>
+            <td><audio controls><source src="ablation/1000_wo.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+            <td>w/o ASR Loss, with TE</td>
+            <td><audio controls><source src="ablation/1000_ow.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+            <td>Full</td>
+            <td><audio controls><source src="ablation/1000_ww.wav" type="audio/wav"></audio></td>
+        </tr>
+    </table>
+</body>
+</html>
